@@ -54,7 +54,7 @@ BEGIN
         SELECT 
             TRIM(order_id),
             TRY_CAST(order_date AS DATE), 
-            TRY_CAST(ship_date AS DATE),   -- 🛑 FIXED: Added ship_date back in!
+            TRY_CAST(ship_date AS DATE),   
             TRIM(ship_mode),
             TRIM(customer_id),
             TRIM(product_id),
@@ -68,7 +68,7 @@ BEGIN
             TRY_CAST(shipping_cost AS FLOAT)
         FROM bronze.erp_sales_raw
         WHERE order_id IS NOT NULL 
-          AND TRY_CAST(sales AS FLOAT) > 0; -- 🛑 FIXED: Removed the rogue semicolon before AND!
+          AND TRY_CAST(sales AS FLOAT) > 0; --strictly filter out transactions where `sales <= 0` during the Bronze-to-Silver ETL load, ensuring only valid revenue reaches the Gold layer.
 
         SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' + CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
