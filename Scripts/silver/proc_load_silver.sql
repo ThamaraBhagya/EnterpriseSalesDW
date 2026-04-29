@@ -54,6 +54,7 @@ BEGIN
         SELECT 
             TRIM(order_id),
             TRY_CAST(order_date AS DATE), 
+            TRY_CAST(ship_date AS DATE),   -- 🛑 FIXED: Added ship_date back in!
             TRIM(ship_mode),
             TRIM(customer_id),
             TRIM(product_id),
@@ -66,7 +67,8 @@ BEGIN
             TRY_CAST(profit AS FLOAT),
             TRY_CAST(shipping_cost AS FLOAT)
         FROM bronze.erp_sales_raw
-        WHERE order_id IS NOT NULL;
+        WHERE order_id IS NOT NULL 
+          AND TRY_CAST(sales AS FLOAT) > 0; -- 🛑 FIXED: Removed the rogue semicolon before AND!
 
         SET @end_time = GETDATE();
         PRINT '>> Load Duration: ' + CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
