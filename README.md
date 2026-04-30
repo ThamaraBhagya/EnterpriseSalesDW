@@ -63,7 +63,7 @@ With the backend perfectly modeled, the three Gold views were imported into Powe
 - **Visual Insights:** Includes revenue trends over time, geographic profitability, product mix, shipping mode efficiency, and a locked-width matrix highlighting the Top 5 most profitable products.
 
 
-![BI](Dashboard/GlobalSalesInsights.pbix)
+![BI](Dashboard/image.png)
 ---
 
 
