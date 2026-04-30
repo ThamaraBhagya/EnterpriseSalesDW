@@ -7,6 +7,8 @@ The goal of this project was to demonstrate a full data lifecycle: extracting da
 
 ---
 
+![diagram](Dashboard/architecture.png)
+
 ## 🏗️ System Architecture (The Medallion Architecture)
 This data warehouse was built using the industry-standard **Medallion Architecture** to logically separate data as it flows through the pipeline:
 
