@@ -48,6 +48,7 @@ Instead of manually deleting the row, I updated the Bronze-to-Silver ETL Stored 
 ```sql
 WHERE order_id IS NOT NULL 
   AND TRY_CAST(sales AS FLOAT) > 0;
+```
 
 After re-running the pipeline, the automated tests passed with zero errors, ensuring only clean, profitable data reached the Gold layer.
 
@@ -61,4 +62,10 @@ With the backend perfectly modeled, the three Gold views were imported into Powe
 - **Interactive UI:** A green-themed left control panel featuring dropdown slicers for Year, Region, Segment, and Category.
 - **Visual Insights:** Includes revenue trends over time, geographic profitability, product mix, shipping mode efficiency, and a locked-width matrix highlighting the Top 5 most profitable products.
 
+
+![BI](Dashboard/GlobalSalesInsights.pbix)
 ---
+
+
+
+
