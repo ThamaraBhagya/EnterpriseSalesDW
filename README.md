@@ -46,3 +46,17 @@ Instead of manually deleting the row, I updated the Bronze-to-Silver ETL Stored 
 ```sql
 WHERE order_id IS NOT NULL 
   AND TRY_CAST(sales AS FLOAT) > 0;
+
+After re-running the pipeline, the automated tests passed with zero errors, ensuring only clean, profitable data reached the Gold layer.
+
+---
+
+## 📊 Business Intelligence (Power BI)
+With the backend perfectly modeled, the three Gold views were imported into Power BI using a **1-to-Many (*:1)** relationship model.
+
+**Dashboard Features:**
+- **DAX Measures:** Custom calculators created for `Total Sales`, `Total Profit`, `Total Orders`, and `Profit Margin` (using the safe `DIVIDE` function).
+- **Interactive UI:** A green-themed left control panel featuring dropdown slicers for Year, Region, Segment, and Category.
+- **Visual Insights:** Includes revenue trends over time, geographic profitability, product mix, shipping mode efficiency, and a locked-width matrix highlighting the Top 5 most profitable products.
+
+---
