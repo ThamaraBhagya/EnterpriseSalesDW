@@ -42,10 +42,12 @@ SELECT
     category,
     sub_category
 FROM (
-    
-    SELECT DISTINCT product_id, product_name, category, sub_category 
+    SELECT 
+        product_id, product_name, category, sub_category,
+        ROW_NUMBER() OVER (PARTITION BY product_id ORDER BY product_name) AS rn
     FROM silver.erp_sales
-) AS unique_products;
+) AS deduped
+WHERE rn = 1;
 GO
 
 -- Create Fact: Sales
@@ -72,6 +74,5 @@ FROM silver.erp_sales s
 LEFT JOIN gold.dim_customers c 
     ON s.customer_id = c.customer_id
 LEFT JOIN gold.dim_products p 
-    ON s.product_id = p.product_id 
-    AND s.product_name = p.product_name;
+    ON s.product_id = p.product_id;
 GO
